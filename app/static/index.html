@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueueStorm Investigator API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .api-section {
+            margin-bottom: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .api-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .api-header h2 {
+            color: #667eea;
+            font-size: 1.5em;
+        }
+        
+        .method-badge {
+            background: #10b981;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .api-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            min-height: 200px;
+            resize: vertical;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .response-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+            display: none;
+        }
+        
+        .response-section.show {
+            display: block;
+        }
+        
+        .response-section h3 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .response-content {
+            background: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .example-buttons {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .example-btn {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 8px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .example-btn:hover {
+            background: #e5e7eb;
+            border-color: #9ca3af;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+        }
+        
+        .docs-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .docs-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>QueueStorm Investigator API</h1>
+            <p>AI-Powered Customer Support Ticket Analysis System</p>
+        </header>
+        
+        <div class="content">
+            <div class="api-section">
+                <div class="api-header">
+                    <span class="method-badge">GET</span>
+                    <h2>/health</h2>
+                </div>
+                <div class="api-body">
+                    <p><strong>Description:</strong> Check API health status</p>
+                    <button onclick="testHealth()">Test Health Endpoint</button>
+                    <div id="health-response" class="response-section">
+                        <h3>Response:</h3>
+                        <div class="response-content">
+                            <pre id="health-output"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="api-section">
+                <div class="api-header">
+                    <span class="method-badge" style="background: #3b82f6;">POST</span>
+                    <h2>/analyze-ticket</h2>
+                </div>
+                <div class="api-body">
+                    <p><strong>Description:</strong> Analyze customer support tickets with AI</p>
+                    
+                    <div class="example-buttons">
+                        <button class="example-btn" onclick="loadExample('english')">English Example</button>
+                        <button class="example-btn" onclick="loadExample('bangla')">Bangla Example</button>
+                        <button class="example-btn" onclick="loadExample('banglish')">Banglish Example</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="request-body">Request Body (JSON):</label>
+                        <textarea id="request-body" placeholder='Enter JSON request body...'></textarea>
+                    </div>
+                    
+                    <button onclick="testAnalyze()">Analyze Ticket</button>
+                    
+                    <div id="analyze-response" class="response-section">
+                        <h3>Response:</h3>
+                        <div class="response-content">
+                            <pre id="analyze-output"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2026 QueueStorm Investigator | SUST Hackathon 2026</p>
+            <a href="https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli" class="docs-link" target="_blank">
+                View Documentation on GitHub
+            </a>
+        </footer>
+    </div>
+    
+    <script>
+        const API_BASE = window.location.origin;
+        
+        const examples = {
+            english: {
+                "ticket_id": "TEST-EN-001",
+                "complaint": "I sent 5000 taka to wrong number +8801712345678. Please help me get it back.",
+                "transaction_history": [
+                    {
+                        "transaction_id": "TXN-12345",
+                        "timestamp": "2026-04-14T14:10:00Z",
+                        "type": "transfer",
+                        "amount": 5000,
+                        "counterparty": "+8801712345678",
+                        "status": "completed"
+                    }
+                ]
+            },
+            bangla: {
+                "ticket_id": "TEST-BN-001",
+                "complaint": "আমি ভুল নম্বরে ৫০০০ টাকা পাঠিয়েছি। দয়া করে ফেরত দিন।",
+                "language": "bn",
+                "transaction_history": [
+                    {
+                        "transaction_id": "TXN-67890",
+                        "timestamp": "2026-04-14T14:10:00Z",
+                        "type": "transfer",
+                        "amount": 5000,
+                        "counterparty": "+8801812345678",
+                        "status": "completed"
+                    }
+                ]
+            },
+            banglish: {
+                "ticket_id": "TEST-BANGLISH-001",
+                "complaint": "Ami 2000 taka vul number e pathaise. Please ferot den.",
+                "transaction_history": [
+                    {
+                        "transaction_id": "TXN-11111",
+                        "timestamp": "2026-04-14T10:00:00Z",
+                        "type": "transfer",
+                        "amount": 2000,
+                        "counterparty": "+8801712222222",
+                        "status": "completed"
+                    }
+                ]
+            }
+        };
+        
+        function loadExample(type) {
+            document.getElementById('request-body').value = JSON.stringify(examples[type], null, 2);
+        }
+        
+        async function testHealth() {
+            const responseDiv = document.getElementById('health-response');
+            const outputPre = document.getElementById('health-output');
+            
+            responseDiv.classList.add('show');
+            outputPre.textContent = 'Loading...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                outputPre.innerHTML = `<span class="status-badge status-success">Status: ${response.status}</span>\n` +
+                    JSON.stringify(data, null, 2);
+            } catch (error) {
+                outputPre.innerHTML = `<span class="status-badge status-error">Error</span>\n` +
+                    error.message;
+            }
+        }
+        
+        async function testAnalyze() {
+            const requestBody = document.getElementById('request-body').value;
+            const responseDiv = document.getElementById('analyze-response');
+            const outputPre = document.getElementById('analyze-output');
+            
+            if (!requestBody.trim()) {
+                alert('Please enter a request body or select an example');
+                return;
+            }
+            
+            responseDiv.classList.add('show');
+            outputPre.textContent = 'Analyzing ticket... (may take 1-3 seconds)';
+            
+            try {
+                const jsonData = JSON.parse(requestBody);
+                
+                const response = await fetch(`${API_BASE}/analyze-ticket`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+                });
+                
+                const data = await response.json();
+                
+                const statusClass = response.ok ? 'status-success' : 'status-error';
+                outputPre.innerHTML = `<span class="status-badge ${statusClass}">Status: ${response.status}</span>\n` +
+                    JSON.stringify(data, null, 2);
+            } catch (error) {
+                outputPre.innerHTML = `<span class="status-badge status-error">Error</span>\n` +
+                    error.message;
+            }
+        }
+        
+        window.onload = function() {
+            loadExample('english');
+        };
+    </script>
+</body>
+</html>

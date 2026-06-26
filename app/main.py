@@ -1,4 +1,6 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import dotenv
 dotenv.load_dotenv()
 
@@ -9,6 +11,12 @@ from app.safety import enforce_safety_guard
 from app.language_detector import detect_language
 
 app = FastAPI(title="QueueStorm Investigator")
+
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+@app.get("/")
+def read_root():
+    return FileResponse("app/static/index.html")
 
 @app.get("/health")
 def health():
