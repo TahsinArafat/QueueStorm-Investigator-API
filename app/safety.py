@@ -11,23 +11,30 @@ SAFE_REPLY_BN = (
 )
 
 def enforce_safety_guard(text: str, is_bangla: bool = False) -> str:
-    # 1. Anti-Credential Protection Check
-    # Match keywords asking or suggesting credentials
-    cred_patterns = [
-        r'\b(?:pin|otp|password|passcode|cvv|card\s*number)\b',
-        r'(?:পিন|ওটিপি|পাসওয়ার্ড|পাসকোড)'
-    ]
-    
-    # If LLM asks or mentions sensitive keywords contextually in an insecure way:
-    # E.g. "enter your pin", "send us your otp"
     lower_text = text.lower()
-    unsafe_keywords = ["share", "send", "tell", "give", "write", "provide", "পাঠান", "দিন", "শেয়ার", "বলুন", "input", "টাইপ"]
     
-    has_cred = any(re.search(pattern, lower_text) for pattern in cred_patterns)
-    is_unsafe_request = has_cred and any(ukw in lower_text for ukw in unsafe_keywords)
+    # 1. Credentials warning and request checker
+    cred_keywords = ["pin", "otp", "password", "passcode", "cvv", "card number", "পিন", "ওটিপি", "পাসওয়ার্ড", "পাসকোড"]
+    has_cred = any(kw in lower_text for kw in cred_keywords)
     
-    # Explicitly check for card or pass numbers
-    if is_unsafe_request or re.search(r'\b\d{16}\b', text):
+    is_unsafe_request = False
+    if has_cred:
+        unsafe_verbs = ["share", "send", "tell", "give", "write", "provide", "input", "type", "enter", "verify", "পাঠান", "দিন", "বলুন", "লিখুন", "টাইপ"]
+        verbs_found = [v for v in unsafe_verbs if v in lower_text]
+        if verbs_found:
+            warning_indicators = [
+                "do not", "don't", "dont", "never", "no one", "not share", "should not", "must not",
+                "করবেন না", "শেয়ার করবেন না", "দেবেন না", "না", "নিরাপদ রাখুন"
+            ]
+            is_warning = any(wi in lower_text for wi in warning_indicators)
+            if not is_warning:
+                is_unsafe_request = True
+
+    # 16 digit card number check
+    if re.search(r'\b\d{16}\b', text):
+        is_unsafe_request = True
+
+    if is_unsafe_request:
         return SAFE_REPLY_BN if is_bangla else SAFE_REPLY_EN
 
     # 2. Refund promise scrub
