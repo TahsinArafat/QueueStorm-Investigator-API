@@ -1,4 +1,7 @@
 from fastapi import FastAPI, HTTPException
+import dotenv
+dotenv.load_dotenv()
+
 from app.schemas import AnalyzeTicketRequest, AnalyzeTicketResponse, LanguageEnum
 from app.rules import match_transaction, classify_ticket, detect_bangla_chars
 from app.llm import generate_ticket_texts
