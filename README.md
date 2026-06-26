@@ -89,9 +89,9 @@ curl http://127.0.0.1:8000/health
 
 ## **Running Tests**
 
-To run the unit, API, safety, and compliance test suites, execute:
+To run the unit, API, safety, and compliance test suites offline (fast execution):
 ```bash
-PYTHONPATH=. pytest -v
+OPENAI_API_KEY="" PYTHONPATH=. pytest -v
 ```
 
 ---
