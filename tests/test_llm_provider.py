@@ -154,6 +154,7 @@ class TestLLMProviderPool:
         # Timeout errors
         assert pool.should_retry(Exception("timeout occurred")) is True
         assert pool.should_retry(Exception("Request timed out")) is True
+        assert pool.should_retry(Exception("Request timed out after 4000ms")) is True
 
         # Server errors
         assert pool.should_retry(Exception("503 Service Unavailable")) is True
@@ -177,6 +178,10 @@ class TestLLMProviderPool:
 
         # Not found errors
         assert pool.should_retry(Exception("404 model_not_found")) is False
+
+        import json
+        json_error = json.JSONDecodeError("msg", "doc", 0)
+        assert pool.should_retry(json_error) is False
 
     def test_should_retry_with_status_code(self):
         """Test error classification using status_code attribute"""

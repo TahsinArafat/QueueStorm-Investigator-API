@@ -11,6 +11,7 @@ SAFE_REPLY_BN = (
 )
 
 def enforce_safety_guard(text: str, is_bangla: bool = False) -> str:
+    text = text.replace('\u2011', '-').replace('\u2012', '-').replace('\u2013', '-').replace('\u2014', '-').replace('\u2015', '-')
     lower_text = text.lower()
     
     # 1. Credentials warning and request checker

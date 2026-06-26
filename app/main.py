@@ -3,9 +3,10 @@ import dotenv
 dotenv.load_dotenv()
 
 from app.schemas import AnalyzeTicketRequest, AnalyzeTicketResponse, LanguageEnum
-from app.rules import match_transaction, classify_ticket, detect_bangla_chars
+from app.rules import match_transaction, classify_ticket
 from app.llm import generate_ticket_texts
 from app.safety import enforce_safety_guard
+from app.language_detector import detect_language
 
 app = FastAPI(title="QueueStorm Investigator")
 
@@ -15,10 +16,9 @@ def health():
 
 @app.post("/analyze-ticket", response_model=AnalyzeTicketResponse)
 def analyze_ticket(request: AnalyzeTicketRequest):
-    # 1. Determine Language natively if not supplied
     client_lang = request.language
     if not client_lang:
-        client_lang = LanguageEnum.bn if detect_bangla_chars(request.complaint) else LanguageEnum.en
+        client_lang = detect_language(request.complaint, method="hybrid")
 
     # 2. Deterministic Rule Matching
     relevant_tx_id, verdict = match_transaction(

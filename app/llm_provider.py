@@ -6,6 +6,7 @@ across multiple API endpoints/keys in round-robin fashion with automatic failove
 """
 
 import os
+import re
 import json
 import logging
 import threading
@@ -90,7 +91,8 @@ class LLMProviderPool:
                 if config.name not in self._clients:
                     self._clients[config.name] = OpenAI(
                         api_key=config.api_key,
-                        base_url=config.base_url
+                        base_url=config.base_url,
+                        timeout=config.timeout
                     )
                     logger.debug(f"Created OpenAI client for provider: {config.name}")
 
@@ -106,11 +108,18 @@ class LLMProviderPool:
         Returns:
             True if should try next provider, False if should fail fast
         """
+        if isinstance(error, json.JSONDecodeError):
+            return False
+
         error_str = str(error).lower()
 
-        # Check non-retriable patterns first (fail fast)
-        if any(pattern in error_str for pattern in self.NON_RETRIABLE_ERROR_PATTERNS):
-            return False
+        for pattern in self.NON_RETRIABLE_ERROR_PATTERNS:
+            if pattern.isdigit():
+                if re.search(r'\b' + re.escape(pattern) + r'\b', error_str):
+                    return False
+            else:
+                if pattern in error_str:
+                    return False
 
         # Check retriable patterns
         if any(pattern in error_str for pattern in self.RETRIABLE_ERROR_PATTERNS):
@@ -257,6 +266,7 @@ def load_providers_from_env() -> List[LLMProviderConfig]:
 
 # Global singleton pool (initialized once at module load)
 _provider_pool: Optional[LLMProviderPool] = None
+_provider_lock = threading.Lock()
 
 
 def get_provider_pool() -> Optional[LLMProviderPool]:
@@ -269,8 +279,10 @@ def get_provider_pool() -> Optional[LLMProviderPool]:
     global _provider_pool
 
     if _provider_pool is None:
-        providers = load_providers_from_env()
-        if providers:
-            _provider_pool = LLMProviderPool(providers)
+        with _provider_lock:
+            if _provider_pool is None:
+                providers = load_providers_from_env()
+                if providers:
+                    _provider_pool = LLMProviderPool(providers)
 
     return _provider_pool

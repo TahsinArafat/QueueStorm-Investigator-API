@@ -1,0 +1,222 @@
+[
+  {
+    "case_id": "SAMPLE-01",
+    "status": "PASSED",
+    "time": 6.149374961853027,
+    "output": {
+      "ticket_id": "TKT-001",
+      "relevant_transaction_id": "TXN-9101",
+      "evidence_verdict": "consistent",
+      "case_type": "wrong_transfer",
+      "severity": "high",
+      "department": "dispute_resolution",
+      "agent_summary": "Customer mistakenly sent 5000 taka to a wrong number; recipient not responding. Evidence is consistent, and transaction TXN-9101 is relevant.",
+      "recommended_next_action": "Initiate reversal request for transaction TXN-9101 and coordinate with the recipient's mobile network operator to recover funds.",
+      "customer_reply": "Dear customer, we have received your complaint regarding the wrong transfer. We are initiating our dispute resolution process to recover the funds if possible. Please note that any eligible amount will be returned through official channels. We will update you on the progress.",
+      "human_review_required": true,
+      "confidence": 0.9,
+      "reason_codes": [
+        "wrong_transfer",
+        "consistent"
+      ]
+    }
+  },
+  {
+    "case_id": "SAMPLE-02",
+    "status": "PASSED",
+    "time": 6.3687827587127686,
+    "output": {
+      "ticket_id": "TKT-002",
+      "relevant_transaction_id": "TXN-9202",
+      "evidence_verdict": "inconsistent",
+      "case_type": "wrong_transfer",
+      "severity": "medium",
+      "department": "dispute_resolution",
+      "agent_summary": "Customer claims sent 2000 to wrong recipient, but evidence is inconsistent. Case under dispute resolution.",
+      "recommended_next_action": "Verify transaction details and contact recipient for possible reversal; if unsuccessful, escalate for further investigation.",
+      "customer_reply": "Thank you for reporting this. We are reviewing your case. If any eligible amount can be returned, it will be processed through official channels. Please allow us time to investigate.",
+      "human_review_required": true,
+      "confidence": 0.7,
+      "reason_codes": [
+        "wrong_transfer",
+        "inconsistent"
+      ]
+    }
+  },
+  {
+    "case_id": "SAMPLE-03",
+    "status": "PASSED",
+    "time": 7.197183847427368,
+    "output": {
+      "ticket_id": "TKT-003",
+      "relevant_transaction_id": "TXN-9301",
+      "evidence_verdict": "consistent",
+      "case_type": "payment_failed",
+      "severity": "high",
+      "department": "payments_ops",
+      "agent_summary": "Customer reports failed mobile recharge of 1200 taka with balance deducted; evidence is consistent with claim.",
+      "recommended_next_action": "Review transaction TXN-9301 in payments system and initiate refund through official channels if eligible.",
+      "customer_reply": "Dear customer, we apologize for the inconvenience. We have verified your claim regarding the failed recharge of 1200 taka. The eligible amount will be returned through our official channels. Please allow 3-5 business days for the refund to be processed. If you have further questions, please contact our support team.",
+      "human_review_required": false,
+      "confidence": 0.9,
+      "reason_codes": [
+        "payment_failed",
+        "consistent"
+      ]
+    }
+  },
+  {
+    "case_id": "SAMPLE-04",
+    "status": "PASSED",
+    "time": 7.432313680648804,
+    "output": {
+      "ticket_id": "TKT-004",
+      "relevant_transaction_id": "TXN-9401",
+      "evidence_verdict": "consistent",
+      "case_type": "refund_request",
+      "severity": "low",
+      "department": "customer_support",
+      "agent_summary": "Customer paid 500 taka for a product but changed their mind and requests a refund. Evidence is consistent.",
+      "recommended_next_action": "Review the merchant's return and refund policy to determine eligibility, and inform the customer about the standard refund process.",
+      "customer_reply": "Thank you for reaching out regarding your request for a refund of 500 taka. We have received your request and will review it according to our refund policy. Please note that refunds are subject to the merchant's return policy. Any eligible amount will be returned through official channels. We will update you once the review is complete.",
+      "human_review_required": false,
+      "confidence": 0.9,
+      "reason_codes": [
+        "refund_request",
+        "consistent"
+      ]
+    }
+  },
+  {
+    "case_id": "SAMPLE-05",
+    "status": "PASSED",
+    "time": 8.158178091049194,
+    "output": {
+      "ticket_id": "TKT-005",
+      "relevant_transaction_id": null,
+      "evidence_verdict": "insufficient_data",
+      "case_type": "phishing_or_social_engineering",
+      "severity": "critical",
+      "department": "fraud_risk",
+      "agent_summary": "Customer received a phishing call from someone impersonating bKash, asking for OTP and threatening account closure. No OTP or personal information was shared. Evidence insufficient for further action.",
+      "recommended_next_action": "Educate the customer on phishing tactics and instruct them to never share OTP or PIN. Advise reporting the suspicious number to bKash and monitoring account activity. If any details were previously shared, suggest changing PIN. Since no information was compromised, no immediate escalation needed.",
+      "customer_reply": "Thank you for reaching out. This is a common phishing attempt. Please do not share your OTP, PIN, or any personal information with anyone claiming to be from bKash. Our official representatives will never ask for such details. If you receive such calls, please ignore them and report the number to our customer care. Since you did not share anything, your account is safe. You may also change your bKash PIN as a precaution. Stay alert and only use official bKash channels for any assistance.",
+      "human_review_required": true,
+      "confidence": 0.7,
+      "reason_codes": [
+        "phishing_or_social_engineering",
+        "insufficient_data"
+      ]
+    }
+  },
+  {
+    "case_id": "SAMPLE-06",
+    "status": "PASSED",
+    "time": 7.939488887786865,
+    "output": {
+      "ticket_id": "TKT-006",
+      "relevant_transaction_id": null,
+      "evidence_verdict": "insufficient_data",
+      "case_type": "other",
+      "severity": "low",
+      "department": "customer_support",
+      "agent_summary": "Customer reports a vague issue with their money without specific details. No transaction ID or evidence provided.",
+      "recommended_next_action": "Ask the customer to provide more specific information about the issue, such as the date, amount, and nature of the problem.",
+      "customer_reply": "Thank you for reaching out. We'd like to help resolve this. Could you please provide more details about the issue, such as when it started, the amount involved, and what you were trying to do? Please note that for security reasons, do not share your PIN, OTP, or password. Once we have the details, we can investigate further.",
+      "human_review_required": false,
+      "confidence": 0.7,
+      "reason_codes": [
+        "other",
+        "insufficient_data"
+      ]
+    }
+  },
+  {
+    "case_id": "SAMPLE-07",
+    "status": "PASSED",
+    "time": 11.650566101074219,
+    "output": {
+      "ticket_id": "TKT-007",
+      "relevant_transaction_id": "TXN-9701",
+      "evidence_verdict": "consistent",
+      "case_type": "agent_cash_in_issue",
+      "severity": "high",
+      "department": "agent_operations",
+      "agent_summary": "Customer reports an agent cash-in of 2000 BDT not credited to balance. Transaction TXN-9701 evidence is consistent. Escalate to agent operations for verification and resolution.",
+      "recommended_next_action": "Verify transaction status with agent operations team and initiate manual credit if needed.",
+      "customer_reply": "\u09aa\u09cd\u09b0\u09bf\u09af\u09bc \u0997\u09cd\u09b0\u09be\u09b9\u0995, \u0986\u09aa\u09a8\u09be\u09b0 \u0985\u09ad\u09bf\u09af\u09cb\u0997\u09c7\u09b0 \u099c\u09a8\u09cd\u09af \u09a7\u09a8\u09cd\u09af\u09ac\u09be\u09a6\u0964 \u0986\u09ae\u09b0\u09be \u0986\u09aa\u09a8\u09be\u09b0 \u09b2\u09c7\u09a8\u09a6\u09c7\u09a8 (TXN-9701) \u09af\u09be\u099a\u09be\u0987 \u0995\u09b0\u099b\u09bf \u098f\u09ac\u0982 \u09a6\u09cd\u09b0\u09c1\u09a4 \u09b8\u09ae\u09be\u09a7\u09be\u09a8\u09c7\u09b0 \u099c\u09a8\u09cd\u09af \u098f\u099c\u09c7\u09a8\u09cd\u099f \u0985\u09aa\u09be\u09b0\u09c7\u09b6\u09a8 \u099f\u09bf\u09ae\u09c7\u09b0 \u09b8\u09be\u09a5\u09c7 \u09af\u09cb\u0997\u09be\u09af\u09cb\u0997 \u0995\u09b0\u099b\u09bf\u0964 \u0986\u09aa\u09a8\u09be\u09b0 \u09ac\u09cd\u09af\u09be\u09b2\u09c7\u09a8\u09cd\u09b8\u09c7 \u0995\u09cb\u09a8\u09cb \u09aa\u09b0\u09bf\u09ae\u09be\u09a3 \u099c\u09ae\u09be \u09b9\u0993\u09af\u09bc\u09be\u09b0 \u09a5\u09be\u0995\u09b2\u09c7 \u09a4\u09be \u0985\u09ab\u09bf\u09b8\u09bf\u09af\u09bc\u09be\u09b2 \u09aa\u09cd\u09b0\u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09be\u09af\u09bc \u09af\u09cb\u0997 \u0995\u09b0\u09be \u09b9\u09ac\u09c7\u0964 \u0985\u09a8\u09c1\u0997\u09cd\u09b0\u09b9 \u0995\u09b0\u09c7 \u0995\u09bf\u099b\u09c1 \u09b8\u09ae\u09af\u09bc \u0985\u09aa\u09c7\u0995\u09cd\u09b7\u09be \u0995\u09b0\u09c1\u09a8\u0964",
+      "human_review_required": true,
+      "confidence": 0.9,
+      "reason_codes": [
+        "agent_cash_in_issue",
+        "consistent"
+      ]
+    }
+  },
+  {
+    "case_id": "SAMPLE-08",
+    "status": "PASSED",
+    "time": 10.77118992805481,
+    "output": {
+      "ticket_id": "TKT-008",
+      "relevant_transaction_id": null,
+      "evidence_verdict": "insufficient_data",
+      "case_type": "wrong_transfer",
+      "severity": "medium",
+      "department": "dispute_resolution",
+      "agent_summary": "Customer reports sending $1000 to brother but recipient hasn't received the funds. The case lacks sufficient evidence to proceed.",
+      "recommended_next_action": "Request transaction details (date, time, recipient account, reference number) from the customer to initiate investigation.",
+      "customer_reply": "Thank you for contacting us about your transfer. We are sorry to hear your brother hasn't received the funds. To investigate this, please provide the exact date and time of the transaction, the recipient's account details, and any confirmation or reference number. Please do not share your PIN or password. We will check the status and ensure any eligible amount is returned through official channels. For immediate assistance, please reach out via our official app or website.",
+      "human_review_required": false,
+      "confidence": 0.7,
+      "reason_codes": [
+        "wrong_transfer",
+        "insufficient_data"
+      ]
+    }
+  },
+  {
+    "case_id": "SAMPLE-09",
+    "status": "PASSED",
+    "time": 6.723036050796509,
+    "output": {
+      "ticket_id": "TKT-009",
+      "relevant_transaction_id": "TXN-9901",
+      "evidence_verdict": "consistent",
+      "case_type": "merchant_settlement_delay",
+      "severity": "medium",
+      "department": "merchant_operations",
+      "agent_summary": "Merchant reports delayed settlement of 15,000 taka from yesterday's sales (TXN-9901). Evidence consistent with the claim. Case assigned to merchant operations for investigation.",
+      "recommended_next_action": "Escalate to merchant operations team to verify settlement status and initiate manual settlement if needed.",
+      "customer_reply": "Dear Merchant, thank you for reaching out. We have verified your claim regarding the delayed settlement of 15,000 taka (Transaction ID: TXN-9901). Our merchant operations team is investigating the issue and will ensure that any eligible amount is returned through official channels. You will receive an update once the settlement is processed. We apologize for the inconvenience and appreciate your patience.",
+      "human_review_required": false,
+      "confidence": 0.9,
+      "reason_codes": [
+        "merchant_settlement_delay",
+        "consistent"
+      ]
+    }
+  },
+  {
+    "case_id": "SAMPLE-10",
+    "status": "PASSED",
+    "time": 8.650119066238403,
+    "output": {
+      "ticket_id": "TKT-010",
+      "relevant_transaction_id": "TXN-10002",
+      "evidence_verdict": "consistent",
+      "case_type": "duplicate_payment",
+      "severity": "high",
+      "department": "payments_ops",
+      "agent_summary": "Customer reports duplicate payment of 850 taka for electricity bill. Evidence is consistent with claim.",
+      "recommended_next_action": "Coordinate with payments operations to reverse the duplicate transaction TXN-10002.",
+      "customer_reply": "Dear customer, thank you for reporting this issue. We have received your complaint regarding the duplicate deduction of 850 taka for your electricity bill. Our team will investigate and if the duplicate payment is confirmed, any eligible amount will be returned through official channels. We appreciate your patience.",
+      "human_review_required": true,
+      "confidence": 0.9,
+      "reason_codes": [
+        "duplicate_payment",
+        "consistent"
+      ]
+    }
+  }
+]
