@@ -114,7 +114,7 @@ def classify_ticket(complaint: str, verdict: EvidenceVerdictEnum, has_txn: bool)
     wrong_transfer_keywords = [
         "wrong number", "wrong transfer", "wrong person", "wrong recipient", "mistake", "brother", "friend",
         "ভুল নম্বর", "ভুল নাম্বার", "ভুল করে", "ভুল নম্বরে", "ভুল নাম্বারে", "ভুল ব্যক্তি", "অন্য নম্বরে", "অন্য নাম্বারে",
-        "পায়নি", "পাঠালাম", "পাঠিয়েছি", "পাঠানো"
+        "পায়নি", "পাঠালাম", "পাঠিয়েছি", "পাঠানো", "vhul", "bhul", "send money", "sendmoney", "sent money", "hoyeche"
     ]
     is_wrong_transfer = False
     if any(kw in text for kw in wrong_transfer_keywords) and any(x in text for x in ["send", "sent", "transfer", "taka", "টাকা", "পাঠা", "দিয়েছি", "দিয়েছি"]):
@@ -136,16 +136,16 @@ def classify_ticket(complaint: str, verdict: EvidenceVerdictEnum, has_txn: bool)
         return CaseTypeEnum.merchant_settlement_delay, SeverityEnum.medium, DepartmentEnum.merchant_operations, False
 
     # Case: duplicate payment
-    if any(kw in text for kw in ["twice", "double", "duplicate", "two times", "দুইবার", "২ বার", "ডাবল"]):
+    if any(kw in text for kw in ["twice", "double", "duplicate", "two times", "দুইবার", "২ বার", "ডাবল", "duibar", "2 bar"]):
         return CaseTypeEnum.duplicate_payment, SeverityEnum.high, DepartmentEnum.payments_ops, True
 
     # Case: payment failed / balance deducted
-    if any(kw in text for kw in ["failed", "deducted", " কেটে", "ব্যর্থ", "ব্যালেন্স", "recharge", "রিচার্জ"]):
+    if any(kw in text for kw in ["failed", "deducted", " কেটে", "ব্যর্থ", "ব্যালেন্স", "recharge", "রিচার্জ", "kete", "ketese", "fail"]):
         hr = (verdict != EvidenceVerdictEnum.consistent)
         return CaseTypeEnum.payment_failed, SeverityEnum.high, DepartmentEnum.payments_ops, hr
 
     # Case: refund request
-    if any(kw in text for kw in ["refund", "refund request", "ফেরত চাই", "রিফান্ড", "change of mind", "don't want"]):
+    if any(kw in text for kw in ["refund", "refund request", "ফেরত চাই", "রিফান্ড", "change of mind", "don't want", "ferot", "ferat"]):
         return CaseTypeEnum.refund_request, SeverityEnum.low, DepartmentEnum.customer_support, False
 
     return CaseTypeEnum.other, SeverityEnum.low, DepartmentEnum.customer_support, False
