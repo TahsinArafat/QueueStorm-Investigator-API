@@ -140,7 +140,7 @@ Ticket details:
                 {"role": "user", "content": user_prompt}
             ],
             response_format={"type": "json_object"},
-            timeout=5.0
+            timeout=3.0
         )
         
         data = json.loads(response.choices[0].message.content)
