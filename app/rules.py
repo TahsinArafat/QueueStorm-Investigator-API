@@ -87,13 +87,6 @@ def match_transaction(complaint: str, history: List[TransactionHistoryEntry]) ->
                 # User claims wrong transfer to someone they send money to regularly
                 return txn.transaction_id, EvidenceVerdictEnum.inconsistent
         
-        # Check matching counterparty if user mentioned it in complaint
-        if counterparties:
-            cleaned_counterparty = txn.counterparty.replace("+88", "")
-            matches_cp = any(cleaned_counterparty in cp or cp.replace("+88", "") in cleaned_counterparty for cp in counterparties)
-            if not matches_cp:
-                return txn.transaction_id, EvidenceVerdictEnum.inconsistent
-
         return txn.transaction_id, EvidenceVerdictEnum.consistent
 
     # If multiple amount matches, try counterparty lookup
@@ -118,30 +111,41 @@ def classify_ticket(complaint: str, verdict: EvidenceVerdictEnum, has_txn: bool)
         return CaseTypeEnum.phishing_or_social_engineering, SeverityEnum.critical, DepartmentEnum.fraud_risk, True
 
     # Case: wrong transfer
-    if any(kw in text for kw in ["wrong number", "wrong transfer", "ভুল নম্বর", "ভুল নাম্বার", "ভুল করে"]):
-        # Always requires human review
-        return CaseTypeEnum.wrong_transfer, SeverityEnum.high, DepartmentEnum.dispute_resolution, True
+    wrong_transfer_keywords = [
+        "wrong number", "wrong transfer", "wrong person", "wrong recipient", "mistake", "brother", "friend",
+        "ভুল নম্বর", "ভুল নাম্বার", "ভুল করে", "ভুল নম্বরে", "ভুল নাম্বারে", "ভুল ব্যক্তি", "অন্য নম্বরে", "অন্য নাম্বারে",
+        "পায়নি", "পাঠালাম", "পাঠিয়েছি", "পাঠানো"
+    ]
+    is_wrong_transfer = False
+    if any(kw in text for kw in wrong_transfer_keywords) and any(x in text for x in ["send", "sent", "transfer", "taka", "টাকা", "পাঠা", "দিয়েছি", "দিয়েছি"]):
+        is_wrong_transfer = True
+    elif any(kw in text for kw in ["wrong number", "wrong transfer", "wrong person", "wrong recipient", "mistake", "ভুল নম্বর", "ভুল নাম্বার", "ভুল করে"]):
+        is_wrong_transfer = True
 
-    # Case: payment failed / balance deducted
-    if any(kw in text for kw in ["failed", "deducted", " কেটে", "ব্যর্থ", "ব্যালেন্স"]):
-        # If consistent failed tx, route payments ops. Requires review only if inconsistent or high value.
-        hr = (verdict != EvidenceVerdictEnum.consistent)
-        return CaseTypeEnum.payment_failed, SeverityEnum.high, DepartmentEnum.payments_ops, hr
-
-    # Case: duplicate payment
-    if any(kw in text for kw in ["twice", "double", "duplicate", "two times", "দুইবার", "২ বার", "ডাবল"]):
-        return CaseTypeEnum.duplicate_payment, SeverityEnum.high, DepartmentEnum.payments_ops, True
+    if is_wrong_transfer:
+        severity = SeverityEnum.high if verdict == EvidenceVerdictEnum.consistent else SeverityEnum.medium
+        hr = (verdict != EvidenceVerdictEnum.insufficient_data)
+        return CaseTypeEnum.wrong_transfer, severity, DepartmentEnum.dispute_resolution, hr
 
     # Case: agent cash in
-    if any(kw in text for kw in ["agent", "cash in", "cash-in", "ক্যাশ ইন", "ক্যাশইন"]):
+    if any(kw in text for kw in ["agent", "cash in", "cash-in", "ক্যাশ ইন", "ক্যাশইন", "এজেন্ট"]):
         return CaseTypeEnum.agent_cash_in_issue, SeverityEnum.high, DepartmentEnum.agent_operations, True
 
     # Case: merchant settlement
     if any(kw in text for kw in ["settlement", "settle", "merchant sales", "সেটেলমেন্ট"]):
         return CaseTypeEnum.merchant_settlement_delay, SeverityEnum.medium, DepartmentEnum.merchant_operations, False
 
+    # Case: duplicate payment
+    if any(kw in text for kw in ["twice", "double", "duplicate", "two times", "দুইবার", "২ বার", "ডাবল"]):
+        return CaseTypeEnum.duplicate_payment, SeverityEnum.high, DepartmentEnum.payments_ops, True
+
+    # Case: payment failed / balance deducted
+    if any(kw in text for kw in ["failed", "deducted", " কেটে", "ব্যর্থ", "ব্যালেন্স", "recharge", "রিচার্জ"]):
+        hr = (verdict != EvidenceVerdictEnum.consistent)
+        return CaseTypeEnum.payment_failed, SeverityEnum.high, DepartmentEnum.payments_ops, hr
+
     # Case: refund request
-    if any(kw in text for kw in ["refund", "refund request", "ফেরত চাই", "রিফান্ড"]):
+    if any(kw in text for kw in ["refund", "refund request", "ফেরত চাই", "রিফান্ড", "change of mind", "don't want"]):
         return CaseTypeEnum.refund_request, SeverityEnum.low, DepartmentEnum.customer_support, False
 
     return CaseTypeEnum.other, SeverityEnum.low, DepartmentEnum.customer_support, False
