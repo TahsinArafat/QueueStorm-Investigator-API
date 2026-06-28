@@ -171,3 +171,70 @@ sudo tail -f /var/log/nginx/error.log
 - Response time < 5 seconds
 - Unit tests pass (37/37)
 - Service auto-restarts on failure
+
+## VPS Sync and Restart
+
+### Sync from Local to VPS
+
+```bash
+# From local machine
+cd /Users/tahsinarafat/App_Dev/Hackathon
+git push origin main
+
+# On VPS
+ssh user@your-vps-ip
+cd /home/YOUR_USERNAME/SUST_Hackathon_2026_Preli
+git pull origin main
+```
+
+### Restart Service
+
+Systemd:
+```bash
+sudo systemctl restart queuestorm
+sudo systemctl status queuestorm
+```
+
+Screen:
+```bash
+# Kill existing screen
+screen -X -S queuestorm quit
+
+# Start new screen
+screen -S queuestorm
+source .venv/bin/activate
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+PM2:
+```bash
+pm2 restart queuestorm
+pm2 status
+```
+
+### Quick Deploy Script
+
+```bash
+#!/bin/bash
+# deploy.sh - Run on VPS after git pull
+
+cd /home/YOUR_USERNAME/SUST_Hackathon_2026_Preli
+source .venv/bin/activate
+pip install -r requirements.txt --quiet
+sudo systemctl restart queuestorm
+sleep 2
+curl -s http://localhost:8000/health
+```
+
+### Check Service Status
+
+```bash
+# Systemd
+sudo systemctl status queuestorm
+
+# View recent logs
+sudo journalctl -u queuestorm --since "5 minutes ago"
+
+# Test endpoint
+curl http://localhost:8000/health
+```

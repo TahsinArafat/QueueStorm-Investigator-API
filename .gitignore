@@ -54,10 +54,5 @@ nohup.out
 # Internal analysis
 omo/
 .puku/
-.omo/
-
-# Test results (generated)
-test_cases_complete_results.json
-test_cases_real_llm_results.json
-test_cases_results.json
+omo/
 
