@@ -37,6 +37,9 @@ env/
 *.swo
 *~
 
+# macOS
+.DS_Store
+
 # Testing
 .pytest_cache/
 .coverage
@@ -45,28 +48,15 @@ htmlcov/
 
 # Project specific
 server.log
+uvicorn.log
 nohup.out
 
-# Test/Development files (keep in repo)
-# test_cases/
-# tests/
-
-# Internal analysis (exclude from repo)
-.omo/
+# Internal analysis
+omo/
 .puku/
-CONFIDENCE_REPORT.md
-CONFIDENCE_SUMMARY.md
-FINAL_CONFIDENCE_REPORT.md
-FINAL_CONFIDENCE_SUMMARY.md
-FINAL_SUMMARY.md
-JUDGE_VERDICT.md
-confidence_report.py
+
+# Test results (generated)
 test_cases_complete_results.json
 test_cases_real_llm_results.json
 test_cases_results.json
-
-# Keep these analysis docs for submission
-# AI_LANGUAGE_DETECTION_SUMMARY.md
-# TEST_CASES_ANALYSIS_REPORT.md
-# pytest.ini
 
