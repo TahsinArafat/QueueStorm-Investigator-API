@@ -112,7 +112,7 @@ Response:
 
 ```bash
 git clone https://github.com/TahsinArafat/QueueStorm-Investigator-API.git
-cd SUST_Hackathon_2026_Preli
+cd QueueStorm-Investigator-API
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -125,7 +125,7 @@ uvicorn app.main:app --reload --port 8000
 
 ```bash
 git clone https://github.com/TahsinArafat/QueueStorm-Investigator-API.git
-cd SUST_Hackathon_2026_Preli
+cd QueueStorm-Investigator-API
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -143,9 +143,9 @@ After=network.target
 [Service]
 Type=simple
 User=YOUR_USERNAME
-WorkingDirectory=/path/to/SUST_Hackathon_2026_Preli
-Environment="PATH=/path/to/SUST_Hackathon_2026_Preli/.venv/bin"
-ExecStart=/path/to/SUST_Hackathon_2026_Preli/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+WorkingDirectory=/path/to/QueueStorm-Investigator-API
+Environment="PATH=/path/to/QueueStorm-Investigator-API/.venv/bin"
+ExecStart=/path/to/QueueStorm-Investigator-API/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
 Restart=always
 
 [Install]
@@ -211,7 +211,7 @@ gunicorn app.main:app \
 
 **No module named 'app':**
 ```bash
-export PYTHONPATH=/path/to/SUST_Hackathon_2026_Preli:$PYTHONPATH
+export PYTHONPATH=/path/to/QueueStorm-Investigator-API:$PYTHONPATH
 ```
 
 **No LLM provider configuration found:**

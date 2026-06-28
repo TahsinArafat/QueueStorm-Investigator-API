@@ -1,0 +1,87 @@
+{
+  "hackathon_test_cases.json": {
+    "passed": 4,
+    "failed": 1,
+    "details": [
+      {
+        "id": "TC-001",
+        "status": "pass",
+        "latency": 1.6321101188659668
+      },
+      {
+        "id": "TC-002",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict: exp=inconsistent, got=consistent"
+        ],
+        "latency": 1.704826831817627
+      },
+      {
+        "id": "TC-003",
+        "status": "pass",
+        "latency": 1.6826601028442383
+      },
+      {
+        "id": "TC-004",
+        "status": "pass",
+        "latency": 1.5377657413482666
+      },
+      {
+        "id": "TC-005",
+        "status": "pass",
+        "latency": 1.311762809753418
+      }
+    ]
+  },
+  "testcase.json": {
+    "passed": 0,
+    "failed": 5,
+    "details": [
+      {
+        "id": "HARD-01",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict: exp=inconsistent, got=consistent"
+        ],
+        "latency": 1.5160272121429443
+      },
+      {
+        "id": "HARD-02",
+        "status": "partial",
+        "mismatches": [
+          "case_type: exp=other, got=phishing_or_social_engineering"
+        ],
+        "latency": 1.594081163406372
+      },
+      {
+        "id": "HARD-03",
+        "status": "partial",
+        "mismatches": [
+          "case_type: exp=refund_request, got=wrong_transfer",
+          "evidence_verdict: exp=inconsistent, got=insufficient_data"
+        ],
+        "latency": 1.0874652862548828
+      },
+      {
+        "id": "HARD-04",
+        "status": "partial",
+        "mismatches": [
+          "case_type: exp=wrong_transfer, got=other",
+          "evidence_verdict: exp=inconsistent, got=consistent",
+          "department: exp=dispute_resolution, got=customer_support"
+        ],
+        "latency": 1.647191047668457
+      },
+      {
+        "id": "HARD-05",
+        "status": "partial",
+        "mismatches": [
+          "case_type: exp=duplicate_payment, got=wrong_transfer",
+          "evidence_verdict: exp=consistent, got=insufficient_data",
+          "department: exp=payments_ops, got=dispute_resolution"
+        ],
+        "latency": 1.3395400047302246
+      }
+    ]
+  }
+}

@@ -7,7 +7,7 @@
 ```bash
 ssh user@your-vps-ip
 git clone https://github.com/TahsinArafat/QueueStorm-Investigator-API.git
-cd SUST_Hackathon_2026_Preli
+cd QueueStorm-Investigator-API
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -53,9 +53,9 @@ After=network.target
 [Service]
 Type=simple
 User=YOUR_USERNAME
-WorkingDirectory=/home/YOUR_USERNAME/SUST_Hackathon_2026_Preli
-Environment="PATH=/home/YOUR_USERNAME/SUST_Hackathon_2026_Preli/.venv/bin"
-ExecStart=/home/YOUR_USERNAME/SUST_Hackathon_2026_Preli/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+WorkingDirectory=/home/YOUR_USERNAME/QueueStorm-Investigator-API
+Environment="PATH=/home/YOUR_USERNAME/QueueStorm-Investigator-API/.venv/bin"
+ExecStart=/home/YOUR_USERNAME/QueueStorm-Investigator-API/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
 Restart=always
 
 [Install]
@@ -183,7 +183,7 @@ git push origin main
 
 # On VPS
 ssh user@your-vps-ip
-cd /home/YOUR_USERNAME/SUST_Hackathon_2026_Preli
+cd /home/YOUR_USERNAME/QueueStorm-Investigator-API
 git pull origin main
 ```
 
@@ -218,7 +218,7 @@ pm2 status
 #!/bin/bash
 # deploy.sh - Run on VPS after git pull
 
-cd /home/YOUR_USERNAME/SUST_Hackathon_2026_Preli
+cd /home/YOUR_USERNAME/QueueStorm-Investigator-API
 source .venv/bin/activate
 pip install -r requirements.txt --quiet
 sudo systemctl restart queuestorm

@@ -10,7 +10,7 @@ Analyzes complaint tickets automatically: detects language (English, Bangla, Ban
 
 ```bash
 git clone https://github.com/TahsinArafat/QueueStorm-Investigator-API.git
-cd SUST_Hackathon_2026_Preli
+cd QueueStorm-Investigator-API
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env  # Add your LLM_PROVIDERS

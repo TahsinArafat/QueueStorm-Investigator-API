@@ -1,0 +1,173 @@
+{
+  "hackathon_test_cases.json": {
+    "passed": 6,
+    "failed": 4,
+    "details": [
+      {
+        "id": "TC-001",
+        "status": "pass"
+      },
+      {
+        "id": "TC-002",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict: expected inconsistent, got consistent"
+        ]
+      },
+      {
+        "id": "TC-003",
+        "status": "pass"
+      },
+      {
+        "id": "TC-004",
+        "status": "pass"
+      },
+      {
+        "id": "TC-005",
+        "status": "pass"
+      },
+      {
+        "id": "TC-006",
+        "status": "pass"
+      },
+      {
+        "id": "TC-007",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict: expected consistent, got insufficient_data"
+        ]
+      },
+      {
+        "id": "TC-008",
+        "status": "partial",
+        "mismatches": [
+          "case_type: expected other, got phishing_or_social_engineering",
+          "department: expected customer_support, got fraud_risk"
+        ]
+      },
+      {
+        "id": "TC-009",
+        "status": "pass"
+      },
+      {
+        "id": "TC-010",
+        "status": "partial",
+        "mismatches": [
+          "case_type: expected refund_request, got payment_failed",
+          "evidence_verdict: expected inconsistent, got consistent",
+          "department: expected dispute_resolution, got payments_ops"
+        ]
+      }
+    ]
+  },
+  "testcase.json": {
+    "passed": 3,
+    "failed": 12,
+    "details": [
+      {
+        "id": "HARD-01",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict: expected inconsistent, got consistent"
+        ]
+      },
+      {
+        "id": "HARD-02",
+        "status": "partial",
+        "mismatches": [
+          "case_type: expected other, got phishing_or_social_engineering"
+        ]
+      },
+      {
+        "id": "HARD-03",
+        "status": "partial",
+        "mismatches": [
+          "case_type: expected refund_request, got wrong_transfer",
+          "evidence_verdict: expected inconsistent, got insufficient_data"
+        ]
+      },
+      {
+        "id": "HARD-04",
+        "status": "partial",
+        "mismatches": [
+          "case_type: expected wrong_transfer, got other",
+          "evidence_verdict: expected inconsistent, got consistent",
+          "department: expected dispute_resolution, got customer_support"
+        ]
+      },
+      {
+        "id": "HARD-05",
+        "status": "partial",
+        "mismatches": [
+          "case_type: expected duplicate_payment, got wrong_transfer",
+          "evidence_verdict: expected consistent, got insufficient_data",
+          "department: expected payments_ops, got dispute_resolution"
+        ]
+      },
+      {
+        "id": "HARD-06",
+        "status": "pass"
+      },
+      {
+        "id": "HARD-07",
+        "status": "pass"
+      },
+      {
+        "id": "HARD-08",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict: expected insufficient_data, got consistent"
+        ]
+      },
+      {
+        "id": "HARD-09",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict: expected inconsistent, got consistent"
+        ]
+      },
+      {
+        "id": "HARD-10",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict: expected insufficient_data, got consistent",
+          "department: expected dispute_resolution, got customer_support"
+        ]
+      },
+      {
+        "id": "HARD-11",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict: expected inconsistent, got insufficient_data"
+        ]
+      },
+      {
+        "id": "HARD-12",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict: expected inconsistent, got consistent"
+        ]
+      },
+      {
+        "id": "HARD-13",
+        "status": "partial",
+        "mismatches": [
+          "department: expected fraud_risk, got customer_support"
+        ]
+      },
+      {
+        "id": "HARD-14",
+        "status": "partial",
+        "mismatches": [
+          "case_type: expected phishing_or_social_engineering, got other",
+          "evidence_verdict: expected consistent, got insufficient_data",
+          "department: expected fraud_risk, got customer_support"
+        ]
+      },
+      {
+        "id": "HARD-15",
+        "status": "pass"
+      }
+    ]
+  }
+}

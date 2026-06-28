@@ -1,0 +1,198 @@
+{
+  "hackathon_test_cases.json": {
+    "passed": 6,
+    "failed": 4,
+    "details": [
+      {
+        "id": "TC-001",
+        "status": "pass",
+        "latency": 2.0694570541381836
+      },
+      {
+        "id": "TC-002",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict:inconsistent\u2192consistent"
+        ],
+        "latency": 1.5367460250854492
+      },
+      {
+        "id": "TC-003",
+        "status": "pass",
+        "latency": 1.507864236831665
+      },
+      {
+        "id": "TC-004",
+        "status": "pass",
+        "latency": 1.485360860824585
+      },
+      {
+        "id": "TC-005",
+        "status": "pass",
+        "latency": 1.0475819110870361
+      },
+      {
+        "id": "TC-006",
+        "status": "pass",
+        "latency": 1.6339361667633057
+      },
+      {
+        "id": "TC-007",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict:consistent\u2192insufficient_da"
+        ],
+        "latency": 1.291888952255249
+      },
+      {
+        "id": "TC-008",
+        "status": "partial",
+        "mismatches": [
+          "case_type:other\u2192phishing_or_soc",
+          "department:customer_suppor\u2192fraud_risk"
+        ],
+        "latency": 1.1615958213806152
+      },
+      {
+        "id": "TC-009",
+        "status": "pass",
+        "latency": 1.3248100280761719
+      },
+      {
+        "id": "TC-010",
+        "status": "partial",
+        "mismatches": [
+          "case_type:refund_request\u2192payment_failed",
+          "evidence_verdict:inconsistent\u2192consistent",
+          "department:dispute_resolut\u2192payments_ops"
+        ],
+        "latency": 1.0319700241088867
+      }
+    ]
+  },
+  "testcase.json": {
+    "passed": 3,
+    "failed": 12,
+    "details": [
+      {
+        "id": "HARD-01",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict:inconsistent\u2192consistent"
+        ],
+        "latency": 1.1916353702545166
+      },
+      {
+        "id": "HARD-02",
+        "status": "partial",
+        "mismatches": [
+          "case_type:other\u2192phishing_or_soc"
+        ],
+        "latency": 0.7498090267181396
+      },
+      {
+        "id": "HARD-03",
+        "status": "partial",
+        "mismatches": [
+          "case_type:refund_request\u2192wrong_transfer",
+          "evidence_verdict:inconsistent\u2192insufficient_da"
+        ],
+        "latency": 1.2693240642547607
+      },
+      {
+        "id": "HARD-04",
+        "status": "partial",
+        "mismatches": [
+          "case_type:wrong_transfer\u2192other",
+          "evidence_verdict:inconsistent\u2192consistent",
+          "department:dispute_resolut\u2192customer_suppor"
+        ],
+        "latency": 1.331132173538208
+      },
+      {
+        "id": "HARD-05",
+        "status": "partial",
+        "mismatches": [
+          "case_type:duplicate_payme\u2192wrong_transfer",
+          "evidence_verdict:consistent\u2192insufficient_da",
+          "department:payments_ops\u2192dispute_resolut"
+        ],
+        "latency": 1.9844341278076172
+      },
+      {
+        "id": "HARD-06",
+        "status": "pass",
+        "latency": 3.0978009700775146
+      },
+      {
+        "id": "HARD-07",
+        "status": "pass",
+        "latency": 1.5326590538024902
+      },
+      {
+        "id": "HARD-08",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict:insufficient_da\u2192consistent"
+        ],
+        "latency": 0.8977360725402832
+      },
+      {
+        "id": "HARD-09",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict:inconsistent\u2192consistent"
+        ],
+        "latency": 1.6992340087890625
+      },
+      {
+        "id": "HARD-10",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict:insufficient_da\u2192consistent",
+          "department:dispute_resolut\u2192customer_suppor"
+        ],
+        "latency": 0.998100996017456
+      },
+      {
+        "id": "HARD-11",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict:inconsistent\u2192insufficient_da"
+        ],
+        "latency": 1.090548038482666
+      },
+      {
+        "id": "HARD-12",
+        "status": "partial",
+        "mismatches": [
+          "evidence_verdict:inconsistent\u2192consistent"
+        ],
+        "latency": 1.155031681060791
+      },
+      {
+        "id": "HARD-13",
+        "status": "partial",
+        "mismatches": [
+          "department:fraud_risk\u2192customer_suppor"
+        ],
+        "latency": 1.0768718719482422
+      },
+      {
+        "id": "HARD-14",
+        "status": "partial",
+        "mismatches": [
+          "case_type:phishing_or_soc\u2192other",
+          "evidence_verdict:consistent\u2192insufficient_da",
+          "department:fraud_risk\u2192customer_suppor"
+        ],
+        "latency": 0.9766488075256348
+      },
+      {
+        "id": "HARD-15",
+        "status": "pass",
+        "latency": 0.7856440544128418
+      }
+    ]
+  }
+}
