@@ -27,7 +27,7 @@ QueueStorm Investigator automatically analyzes customer support tickets for digi
 ### VPS Deployment (5 commands)
 
 ```bash
-git clone https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli.git
+git clone https://github.com/TahsinArafat/QueueStorm-Investigator-API.git
 cd SUST_Hackathon_2026_Preli
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -216,7 +216,6 @@ gunicorn app.main:app \
 | **[DOCUMENTATION.md](DOCUMENTATION.md)** | Complete technical documentation |
 | **[VPS_DEPLOYMENT_CHECKLIST.md](VPS_DEPLOYMENT_CHECKLIST.md)** | Step-by-step deployment guide |
 | **[RELEASE_NOTES.md](RELEASE_NOTES.md)** | Changelog and version history |
-| **[TEST_CASES_ANALYSIS_REPORT.md](TEST_CASES_ANALYSIS_REPORT.md)** | Test results analysis |
 | **[AI_LANGUAGE_DETECTION_SUMMARY.md](AI_LANGUAGE_DETECTION_SUMMARY.md)** | Language detection details |
 
 ---
@@ -332,7 +331,7 @@ Copyright (c) 2026 QueueStorm Investigator Team. All rights reserved.
 
 ## Support
 
-**Repository:** https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli  
+**Repository:** https://github.com/TahsinArafat/QueueStorm-Investigator-API  
 **Documentation:** [DOCUMENTATION.md](DOCUMENTATION.md)  
 **Deployment Guide:** [VPS_DEPLOYMENT_CHECKLIST.md](VPS_DEPLOYMENT_CHECKLIST.md)  
 

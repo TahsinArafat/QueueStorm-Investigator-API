@@ -2,7 +2,7 @@
 
 ## ✅ Repository Status
 - [x] Committed all changes
-- [x] Pushed to GitHub: https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli
+- [x] Pushed to GitHub: https://github.com/TahsinArafat/QueueStorm-Investigator-API
 - [x] Commit hash: 04ebc8b
 
 ---
@@ -15,7 +15,7 @@
 ssh user@your-vps-ip
 
 # Clone the repo
-git clone https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli.git
+git clone https://github.com/TahsinArafat/QueueStorm-Investigator-API.git
 cd SUST_Hackathon_2026_Preli
 ```
 
@@ -387,11 +387,11 @@ python3 final_validation.py
 ## 🚀 Ready to Deploy!
 
 Your code is on GitHub:
-https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli
+https://github.com/TahsinArafat/QueueStorm-Investigator-API
 
 **Quick Start:**
 ```bash
-git clone https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli.git
+git clone https://github.com/TahsinArafat/QueueStorm-Investigator-API.git
 cd SUST_Hackathon_2026_Preli
 python3 -m venv .venv
 source .venv/bin/activate

@@ -1,7 +1,7 @@
 # QueueStorm Investigator - Complete Documentation
 
 **Version:** 1.0.0  
-**Repository:** https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli  
+**Repository:** https://github.com/TahsinArafat/QueueStorm-Investigator-API  
 **Status:** Production Ready
 
 ---
@@ -272,7 +272,7 @@ curl -X POST http://localhost:8000/analyze-ticket \
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli.git
+git clone https://github.com/TahsinArafat/QueueStorm-Investigator-API.git
 cd SUST_Hackathon_2026_Preli
 
 # 2. Create virtual environment
@@ -301,7 +301,7 @@ uvicorn app.main:app --reload --port 8000
 
 ```bash
 # 1. Clone and setup
-git clone https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli.git
+git clone https://github.com/TahsinArafat/QueueStorm-Investigator-API.git
 cd SUST_Hackathon_2026_Preli
 python3 -m venv .venv
 source .venv/bin/activate
@@ -612,8 +612,8 @@ All rights reserved.
 
 ## Support
 
-**Repository:** https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli  
-**Issues:** https://github.com/TahsinArafat/SUST_Hackathon_2026_Preli/issues  
+**Repository:** https://github.com/TahsinArafat/QueueStorm-Investigator-API  
+**Issues:** https://github.com/TahsinArafat/QueueStorm-Investigator-API/issues  
 
 For deployment questions, refer to the troubleshooting section or check existing issues.
 
